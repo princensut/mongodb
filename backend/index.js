@@ -5,6 +5,13 @@ const cors = require('cors');
 const AuthRouter = require('./Routes/AuthRouter');
 const ProductRouter = require('./Routes/ProductRouter');
 
+
+app.use(cors({
+  origin: 'https://mongodb-5kjx.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
 require('dotenv').config();
 require('./Models/db');
 
