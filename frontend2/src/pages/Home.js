@@ -22,7 +22,7 @@ function Home() {
 
     const fetchProducts = async () => {
         try {
-            const url = "https://mongodb-vrzy.vercel.app/";
+            const url = "https://mongodb-vrzy.vercel.app";
             const headers = {
                 headers: {
                     'Authorization': localStorage.getItem('token')
