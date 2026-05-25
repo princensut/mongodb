@@ -6,7 +6,7 @@ const AuthRouter = require('./Routes/AuthRouter');
 const ProductRouter = require('./Routes/ProductRouter');
 
 require('dotenv').config();
-require('./models/db');  // ← lowercase 'models'
+require('./Models/db');
 
 const PORT = process.env.PORT || 8080;
 
@@ -19,10 +19,8 @@ app.use(cors());
 app.use('/auth', AuthRouter);
 app.use('/products', ProductRouter);
 
-// Export for Vercel
 module.exports = app;
 
-// Only listen locally
 if (process.env.NODE_ENV !== 'production') {
     app.listen(PORT, () => {
         console.log(`Server is running on ${PORT}`);
