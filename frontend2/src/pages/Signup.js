@@ -27,7 +27,7 @@ function Signup() {
             return handleError('name, email and password are required')
         }
         try {
-            const url = `https://mongodb-vrzy.vercel.app//auth/login`;
+            const url = `https://mongodb-vrzy.vercel.app/auth/login`;
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
