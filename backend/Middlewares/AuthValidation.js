@@ -1,36 +1,32 @@
 const Joi = require('joi');
-const signupValidation = (req,res,next) => {
-    const schema = joi.object({
+
+const signupValidation = (req, res, next) => {
+    const schema = Joi.object({          // ← capital J
         name: Joi.string().min(3).max(100).required(),
         email: Joi.string().email().required(),
         password: Joi.string().min(4).max(100).required()
     })
-    const {error} = schema.validate(req.body);
-    if(error){
+    const { error } = schema.validate(req.body);
+    if (error) {
         return res.status(400)
-        .json({message:"bad request" , err})
-
+            .json({ message: "bad request", error })  // ← 'error' not 'err'
     }
     next();
-
-    
 }
-const loginValidation = (req,res,next) => {
-    const schema = joi.object({
-        
+
+const loginValidation = (req, res, next) => {
+    const schema = Joi.object({          // ← capital J
         email: Joi.string().email().required(),
         password: Joi.string().min(4).max(100).required()
     })
-    const {error} = schema.validate(req.body);
-    if(error){
+    const { error } = schema.validate(req.body);
+    if (error) {
         return res.status(400)
-        .json({message:"bad request" , err})
-
+            .json({ message: "bad request", error })  // ← 'error' not 'err'
     }
     next();
-    
-    
 }
+
 module.exports = {
     signupValidation,
     loginValidation
