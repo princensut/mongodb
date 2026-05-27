@@ -1,70 +1,267 @@
-# Getting Started with Create React App
+<div style="font-family: 'Poppins', sans-serif;">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# JWT Authentication Web App
 
-## Available Scripts
+A full-stack web application that implements secure JWT (JSON Web Token) authentication with modern frontend notifications and CORS-enabled API communication.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* User Registration & Login
+* JWT-based Authentication
+* Protected Routes
+* Password Hashing & Security
+* CORS Configuration for Cross-Origin Requests
+* Toast Notifications using Toastify-style Libraries
+* Session Persistence with Tokens
+* Error Handling & Validation
+* Responsive UI
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend
 
-### `npm run build`
+* HTML5 / CSS3 / JavaScript
+* Toastify (or similar notification library)
+* Axios / Fetch API
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Backend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Node.js
+* Express.js
+* JWT Authentication
+* bcrypt.js
+* CORS Middleware
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Database
 
-### `npm run eject`
+* MongoDB / MySQL / PostgreSQL *(update according to your project)*
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Project Structure
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+project-root/
+│
+├── client/                 # Frontend
+│   ├── src/
+│   ├── public/
+│   └── package.json
+│
+├── server/                 # Backend
+│   ├── routes/
+│   ├── middleware/
+│   ├── controllers/
+│   ├── models/
+│   ├── config/
+│   └── server.js
+│
+├── .env
+├── package.json
+└── README.md
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 1. Clone the Repository
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+git clone https://github.com/your-username/your-repository-name.git
+cd your-repository-name
+```
 
-### Code Splitting
+### 2. Install Dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Backend
 
-### Analyzing the Bundle Size
+```bash
+cd server
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Frontend
 
-### Making a Progressive Web App
+```bash
+cd client
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Environment Variables
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Create a `.env` file inside the `server` folder and add:
 
-### Deployment
+```env
+PORT=5000
+MONGO_URI=your_database_connection
+JWT_SECRET=your_secret_key
+CLIENT_URL=http://localhost:3000
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## Running the Application
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Start Backend Server
+
+```bash
+cd server
+npm run dev
+```
+
+### Start Frontend
+
+```bash
+cd client
+npm start
+```
+
+---
+
+## Authentication Flow
+
+1. User registers with email and password.
+2. Password is hashed using bcrypt.
+3. User logs in with valid credentials.
+4. Server generates a JWT token.
+5. Token is stored on the client side.
+6. Protected routes verify JWT before access.
+7. Toast notifications display login/logout success or error messages.
+
+---
+
+## CORS Configuration
+
+CORS is enabled to allow secure communication between frontend and backend.
+
+Example:
+
+```javascript
+const cors = require('cors');
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
+```
+
+---
+
+## Toast Notifications
+
+The application uses Toastify-like libraries for clean and responsive notifications.
+
+Example:
+
+```javascript
+Toastify({
+  text: 'Login Successful!',
+  duration: 3000,
+  gravity: 'top',
+  position: 'right',
+  backgroundColor: '#4CAF50'
+}).showToast();
+```
+
+---
+
+## API Endpoints
+
+### Authentication Routes
+
+| Method | Endpoint      | Description       |
+| ------ | ------------- | ----------------- |
+| POST   | /api/register | Register new user |
+| POST   | /api/login    | Login user        |
+| GET    | /api/profile  | Get user profile  |
+| POST   | /api/logout   | Logout user       |
+
+---
+
+## Example JWT Middleware
+
+```javascript
+const jwt = require('jsonwebtoken');
+
+const authMiddleware = (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ message: 'Access denied' });
+  }
+
+  try {
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = verified;
+    next();
+  } catch (error) {
+    res.status(400).json({ message: 'Invalid token' });
+  }
+};
+
+module.exports = authMiddleware;
+```
+
+---
+
+## Screenshots
+
+Add screenshots of:
+
+* Login Page
+* Register Page
+* Dashboard
+* Toast Notifications
+
+---
+
+## Security Practices
+
+* Password hashing using bcrypt
+* JWT token validation
+* Protected API routes
+* Environment variables for secrets
+* CORS restriction setup
+
+---
+
+## Future Improvements
+
+* Refresh Token Authentication
+* Role-Based Access Control
+* Email Verification
+* OAuth Login (Google/GitHub)
+* Rate Limiting & API Security
+
+---
+
+## Contributing
+
+Contributions are welcome.
+
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Author
+
+Developed by **Your Name**
+
+</div>
