@@ -5,6 +5,18 @@ const cors = require('cors');
 const AuthRouter = require('./Routes/AuthRouter');
 const ProductRouter = require('./Routes/ProductRouter');
 
+
+app.use(cors({
+  origin: [
+    'https://mondodb-ui.netlify.app',
+    'https://mongodb-5kjx.vercel.app',
+    'http://localhost:3000'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
+
 require('dotenv').config();
 require('./Models/db');
 
