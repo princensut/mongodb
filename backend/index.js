@@ -8,9 +8,11 @@ const ProductRouter = require('./Routes/ProductRouter');
 
 app.use(cors({
   origin: [
-    'https://mondodb-ui.netlify.app',
+    // 'https://mondodb-ui.netlify.app',
     'https://mongodb-5kjx.vercel.app',
-    'http://localhost:3000'
+    'http://localhost:3000',
+    "http://localhost:5173"
+    
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
